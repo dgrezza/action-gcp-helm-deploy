@@ -1,0 +1,60 @@
+# action.yml
+name: 'Google GKE Helm Deployment'
+description: 'Deploy a helm chart to GKE cluster.'
+branding:
+    icon: anchor
+    color: green
+inputs:
+    serviceaccount-key:
+        description: 'SA json key used to login to GKE.'
+        required: true
+    serviceaccount-name:
+        description: 'SA name used to login to GKE.'
+        required: true
+    gcp-region:
+        description: 'GCP region to use (default: asia-southeast1)'
+        required: true
+        default: asia-southeast1
+    gcp-project:
+        description: 'GCP project to use'
+        required: true
+    gke-cluster-name:
+        description: 'GKE cluster name.'
+        required: true
+    config-files:
+        description: 'Comma separates list of helm values files.'
+        required: false
+    namespace:
+        description: 'Kubernetes namespace to use.'
+        required: false
+    values:
+        description: 'Comma separated list of value sets for helms. e.x: key1=value1,key2=value2'
+        required: false
+    name:
+        description: 'Name of the helm deploy.'
+        required: false
+    chart-path:
+        description: 'The path of the chart.'
+        required: false
+    image-tag:
+        description: 'docker image tag for new deployment'
+        required: false
+    application-name:
+        description: 'application name for deployment'
+        required: true
+runs:
+    using: 'docker'
+    image: 'docker://dgrlabs/action-GKE-helm-deploy:latest'
+    env:
+        SERVICEACCOUNT_KEY: ${{ inputs.serviceaccount-key }}
+        SERVICEACCOUNT_NAME: ${{ inputs.serviceaccount-name }}
+        GKE_CLUSTER_NAME: ${{ inputs.gke-cluster-name }}
+        GCP_REGION: ${{ inputs.gcp-region }}
+        GCP_PROJECT: ${{ inputs.gcp-project }}
+        DEPLOY_CONFIG_FILES: ${{ inputs.config-files }}
+        DEPLOY_NAMESPACE: ${{ inputs.namespace }}
+        DEPLOY_VALUES: ${{ inputs.values }}
+        DEPLOY_NAME: ${{ inputs.name }}
+        DEPLOY_CHART_PATH: ${{ inputs.chart-path }}
+        DEPLOY_IMAGE_TAG: ${{ inputs.image-tag }}
+        APP_NAME: ${{ inputs.application-name }}
