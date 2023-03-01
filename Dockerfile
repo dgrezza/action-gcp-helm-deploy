@@ -9,6 +9,8 @@ RUN chmod +x /usr/bin/kubectl
 RUN wget https://get.helm.sh/helm-v3.8.0-linux-amd64.tar.gz -O - | tar -xzO linux-amd64/helm > /usr/local/bin/helm
 RUN chmod +x /usr/local/bin/helm
 
+RUN gcloud components install gke-gcloud-auth-plugin
+
 COPY deploy.sh /deploy.sh
 RUN chmod +x /deploy.sh
 
