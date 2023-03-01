@@ -44,7 +44,7 @@ inputs:
         required: true
 runs:
     using: 'docker'
-    image: 'docker://dgrlabs/action-GKE-helm-deploy:latest'
+    image: 'docker://dgrlabs/action-gke-helm-deploy:latest'
     env:
         SERVICEACCOUNT_KEY: ${{ inputs.serviceaccount-key }}
         SERVICEACCOUNT_NAME: ${{ inputs.serviceaccount-name }}
