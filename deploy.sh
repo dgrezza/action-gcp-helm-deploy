@@ -14,7 +14,10 @@ if [ ! -n "$DEPLOY_NAMESPACE" ]; then
       ;;
       main)
         DEPLOY_NAMESPACE=production
-      ;; 
+      ;;
+      master)
+        DEPLOY_NAMESPACE=production
+      ;;
       *)
         DEPLOY_NAMESPACE=test
       ;; 
